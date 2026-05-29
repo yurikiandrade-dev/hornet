@@ -1,44 +1,273 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hollow Knight Silksong</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HORNET | SILKSONG</title>
+  <style>
+    :root {
+      --red: #c81e2b;
+      --silk: #ff3366;
+      --bg: #0a0606;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: #e8d0d0;
+      overflow-x: hidden;
+    }
+
+    /* Partículas de Seda */
+    #silk-particles {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.4;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; width: 100%;
+      background: rgba(10,6,6,0.95);
+      backdrop-filter: blur(15px);
+      z-index: 1000;
+      padding: 18px 10%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(200,30,43,0.3);
+    }
+
+    .logo { font-size: 2.2rem; font-weight: bold; color: white; letter-spacing: 2px; }
+
+    .nav-links a {
+      color: #e8d0d0;
+      margin-left: 40px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+    .nav-links a:hover { color: var(--silk); }
+
+    header {
+      height: 100vh;
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.85)), 
+                  url('https://www.adrenaline.com.br/wp-content/uploads/2025/09/review-hollow-knight-silksong-912x569.jpg') center/cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero-content h1 {
+      font-size: 6.5rem;
+      color: white;
+      text-shadow: 0 0 50px var(--red);
+      animation: glow 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow { from { text-shadow: 0 0 30px var(--red); } to { text-shadow: 0 0 60px var(--silk); } }
+
+    .hero-content p {
+      font-size: 2.3rem;
+      color: #ffaaaa;
+      margin: 20px 0 40px;
+    }
+
+    .btn {
+      padding: 18px 55px;
+      background: transparent;
+      color: white;
+      border: 3px solid var(--red);
+      font-size: 1.4rem;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: 0.4s;
+    }
+    .btn:hover {
+      background: var(--red);
+      transform: scale(1.08);
+    }
+
+    section { padding: 120px 10%; position: relative; z-index: 2; }
+
+    h2 {
+      font-size: 3.6rem;
+      text-align: center;
+      margin-bottom: 80px;
+      color: var(--red);
+      text-shadow: 0 0 20px var(--red);
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+
+    .gallery img {
+      width: 100%;
+      border-radius: 18px;
+      transition: all 0.6s;
+      border: 3px solid #222;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.1) rotate(2deg);
+      border-color: var(--silk);
+      box-shadow: 0 0 40px rgba(255, 51, 102, 0.6);
+    }
+
+    .jumping-hornet {
+      position: fixed;
+      bottom: 80px;
+      right: 60px;
+      width: 180px;
+      z-index: 10;
+      transition: all 0.8s ease-in-out;
+      opacity: 0;
+      filter: drop-shadow(0 0 25px var(--silk));
+    }
+
+    footer {
+      text-align: center;
+      padding: 80px 20px;
+      background: #050303;
+      color: #bb7777;
+    }
+  </style>
 </head>
-
-<body style="background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.85)), 
-                    url('https://www.einerd.com/wp-content/uploads/2025/09/Captura-de-tela-2025-09-08-113332.jpg') 
-                    center/cover no-repeat fixed;
-             min-height: 100vh;
-             margin: 0;
-             color: #e8d0d0;
-             text-align: center;
-             font-family: 'Segoe UI', sans-serif;">
-
-
-
-
-
-
-
-
-
-
-
 <body>
-<header>
 
-<main>
+  <canvas id="silk-particles"></canvas>
 
-    <h1>Hollow Knight Silksong.</h1>
-<h2>Uma caçadora!!</h2>
-<p> Hornet um ser MAGNIFICO!!</p>
-<p>Feito por: Um Fã</p>
+  <nav>
+    <div class="logo">HORNET</div>
+    <div class="nav-links">
+      <a href="#sobre">Sobre</a>
+      <a href="#galeria">Galeria</a>
+      <a href="#habilidades">Habilidades</a>
+    </div>
+  </nav>
 
-</main>
+  <header>
+    <div class="hero-content">
+      <h1>HORNET</h1>
+      <p>A Princesa Fantasma • Silksong</p>
+      <button class="btn" onclick="document.getElementById('sobre').scrollIntoView({behavior: 'smooth'})">
+        Entrar no Reino
+      </button>
+    </div>
+  </header>
 
+  <section id="sobre">
+    <h2>Sobre Hornet</h2>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(400px,1fr)); gap:60px; align-items:center;">
+      <img src="https://cdna.artstation.com/p/assets/images/images/091/428/074/large/jaoveneno-silksong-menor.webp?1756776640" style="border-radius:20px;" alt="Hornet">
+      <div>
+        <h3>A mais poderosa guardiã de Hallownest</h3>
+        <p>Filha da Rainha Vespa, Hornet agora lidera sua própria jornada em Pharloom. Com sua agulha e maestria em seda, ela enfrenta novos perigos e segredos.</p>
+      </div>
+    </div>
+  </section>
 
+  <section id="galeria">
+    <h2>Galeria de Silksong</h2>
+    <div class="gallery">
+      <img src="https://www.adrenaline.com.br/wp-content/uploads/2025/09/review-hollow-knight-silksong-912x569.jpg" alt="Hornet">
+      <img src="https://i.pinimg.com/736x/ef/b7/00/efb70067a352af40fd9def13441c6c25.jpg" alt="Hornet">
+      <img src="https://cdna.artstation.com/p/assets/images/images/091/428/074/large/jaoveneno-silksong-menor.webp?1756776640" alt="Hornet">
+      <img src="https://down-br.img.susercontent.com/file/br-11134207-7r98o-mb4xapf50a9l7f" alt="Hornet">
+      <img src="https://www.adrenaline.com.br/wp-content/uploads/2023/07/hollow-knight-silksong-capa-310x310.jpg" alt="Hornet">
+      <img src="https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3720024718612571781" alt="Hornet">
+    </div>
+  </section>
+
+  <section id="habilidades">
+    <h2>Habilidades</h2>
+    <p style="text-align:center; font-size:1.4rem; max-width:800px; margin:0 auto 60px;">
+      Needle Mastery • Silk Weaving • Aerial Dash • Perfect Parry • New Transformations
+    </p>
+  </section>
+
+  <!-- Hornet Pulando Animada -->
+  <img id="jumping-hornet" class="jumping-hornet" src="https://i.pinimg.com/736x/ef/b7/00/efb70067a352af40fd9def13441c6c25.jpg" alt="Hornet Pulando">
+
+  <footer>
+    <p>Feito com <span style="color:#ff3366;">seda vermelha</span> e amor por Hollow Knight</p>
+    <p>Hollow Knight: Silksong • 2026</p>
+  </footer>
+
+  <script>
+    // Partículas de Seda
+    const canvas = document.getElementById('silk-particles');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let particles = [];
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 4 + 1;
+        this.speed = Math.random() * 1.5 + 0.5;
+        this.angle = Math.random() * Math.PI * 2;
+      }
+      update() {
+        this.y += this.speed;
+        this.angle += 0.02;
+        if (this.y > canvas.height) this.y = 0;
+      }
+      draw() {
+        ctx.fillStyle = '#ff3366';
+        ctx.globalAlpha = 0.6;
+        ctx.beginPath();
+        ctx.arc(this.x + Math.sin(this.angle)*10, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    for(let i = 0; i < 80; i++) particles.push(new Particle());
+
+    function animateSilk() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      requestAnimationFrame(animateSilk);
+    }
+    animateSilk();
+
+    // Animação Hornet Pulando a cada 5 segundos
+    const hornet = document.getElementById('jumping-hornet');
+    function jumpHornet() {
+      hornet.style.opacity = '0.9';
+      hornet.style.transform = 'translateY(-120px) scale(1.1)';
+      
+      setTimeout(() => {
+        hornet.style.transform = 'translateY(0) scale(1)';
+      }, 800);
+
+      setTimeout(() => {
+        hornet.style.opacity = '0';
+      }, 1800);
+    }
+
+    setInterval(jumpHornet, 5200);
+    setTimeout(jumpHornet, 1500); // primeira animação
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  </script>
 </body>
 </html>
-
-</header>
