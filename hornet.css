@@ -1,0 +1,38 @@
+ {
+            background-color: #df0a0a88;
+            color: white;
+            text-align: center;
+            max-width: 800px;
+            margin: auto;
+            border: 5px solid;
+            padding: 16px;
+        }
+
+        main {
+            background-color: #d4282875;
+            color: rgb(82, 4, 4);
+            max-width: 800px;
+            margin: auto;
+            padding: 16px;
+            
+        }
+
+article{
+    
+}
+
+
+        img {
+            width: 100px;
+            height: 100px;
+        }
+
+        .autor {
+            font-weight: bold;
+        }
+
+        .like-btn {
+            font-size: 18px;
+            cursor: pointer;
+            margin-right: 8px;
+        }
